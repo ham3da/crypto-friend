@@ -13,7 +13,7 @@ Get the latest prices and news about Popular Crypto Currencies
 * [Google Play](https://play.google.com/store/apps/details?id=com.ham3da.cryptofreind)
 
 ## Open Source projects
-* We have used the following open source projects to develop this app:*
+* We have used the following open source projects to develop this app:*.
 [CryptoBuddy](https://github.com/Patchett/CryptoBuddy)
 
 
