@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.ham3da.cryptofreind.currencylist.CurrencyListTabsActivity"
+    tools:showIn="@layout/fragment_all_currency_list">
+
+
+    <include
+        android:id="@+id/internet_connectivity_error"
+        layout="@layout/internet_connectivity_error"
+        android:visibility="gone" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_refresh"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center|bottom">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/currency_list_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/adView2Layout"
+                android:paddingTop="0dp"
+                android:scrollbars="vertical"
+                android:layoutAnimation="@anim/layout_animation_fall_down"
+                app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                tools:listitem="@layout/row_currency_list_item" />
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+</LinearLayout>

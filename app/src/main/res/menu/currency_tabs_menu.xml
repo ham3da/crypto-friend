@@ -1,0 +1,10 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.ham3da.cryptofreind.currencylist.CurrencyListTabsActivity">
+    <item
+        android:id="@+id/news_button"
+        android:title="@string/News"
+        android:icon="@drawable/ic_library_books_white_24dp"
+        app:showAsAction="ifRoom" />
+</menu>

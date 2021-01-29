@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout android:id="@+id/internet_connectivity_error"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <RelativeLayout
+        android:layout_margin="10dp"
+        android:gravity="center"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/wifi_no"
+            android:layout_width="72dp"
+            android:layout_height="72dp"
+            android:layout_centerHorizontal="true"
+            android:src="@drawable/ic_baseline_wifi_off_24" />
+
+        <TextView
+            android:id="@+id/connect_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:layout_below="@+id/wifi_no"
+            android:textSize="20sp"
+            android:textAlignment="center"
+            android:text="@string/no_internet"/>
+
+
+        <Button
+            android:id="@+id/retryConnBtn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/connect_note"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="15dp"
+            android:padding="15dp"
+            android:textSize="14sp"
+            style="@style/Widget.AppCompat.Button.Colored"
+            android:text="@string/retry"/>
+    </RelativeLayout>
+
+
+</LinearLayout>

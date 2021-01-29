@@ -1,0 +1,271 @@
+<resources>
+    <string name="app_name">Crypto Friend</string>
+    <string name="app_des">News and prices of cryptocurrencies</string>
+    <string name="action_settings">Settings</string>
+    <string name="price_format">Price: &#36; %1$.2f</string>
+    <string name="unrounded_price_format" translatable="false">&#36; %1$s</string>
+    <string name="unrounded_usd_chart_price_format" translatable="false">&#36; %1$s</string>
+    <string name="mkt_cap_format">MarketCap: &#36; %1$,.2f</string>
+    <string name="volume_format">Volume 24h: &#36; %1$,.2f</string>
+    <string name="negative_variable_pct_change_with_dollars_format">%1$s Change: %2$.2f%% &#40;&#45;&#36;%3$.2f&#41;</string>
+    <string name="positive_variable_pct_change_with_dollars_format">%1$s Change: &#43;%2$.2f%% &#40;&#43;&#36;%3$.2f&#41;</string>
+    <string name="negative_variable_pct_change_without_dollars_format">%1$s Change: %2$.2f%%</string>
+    <string name="positive_variable_pct_change_without_dollars_format">%1$s Change: &#43;%2$.2f%%</string>
+
+    <string name="negative_pct_change_format" translatable="false">%1$s: %2$.2f%%</string>
+    <string name="positive_pct_change_format" translatable="false">%1$s: &#43;%2$.2f%%</string>
+    <string name="not_available_pct_change_text_with_time" translatable="false">%1$s: N/A</string>
+
+    <string name="negative_pct_change_with_dollars_format" translatable="false">%1$.2f%% &#40;&#45;&#36;%2$.2f&#41;</string>
+    <string name="positive_pct_change_with_dollars_format" translatable="false">&#43;%1$.2f%% &#40;&#43;&#36;%2$.2f&#41;</string>
+
+    <string name="negative_pct_format" translatable="false">%1$.2f%%</string>
+    <string name="positive_pct_format" translatable="false">&#43;%1$.2f%%</string>
+
+    <string name="News">News</string>
+    <string name="Home">Home</string>
+    <string name="CoinImage">Coin Image</string>
+    <string name="AddCurrency">Add Currency</string>
+    <string name="Favorite">Favorite</string>
+    <string name="Refresh">Refresh</string>
+    <string name="oneDay" translatable="false">24h</string>
+    <string name="threeDay" translatable="false">3d</string>
+    <string name="Week" translatable="false">7d</string>
+    <string name="Month" translatable="false">1m</string>
+    <string name="threeMonth" translatable="false">3m</string>
+    <string name="Year" translatable="false">1y</string>
+    <string name="All">All</string>
+    <string name="AllTime">All Time</string>
+    <string name="action_search">Search</string>
+    <string name="action_sort">Sort</string>
+    <string name="action_internet">Browser</string>
+    <string name="action_share">Share</string>
+    <string name="sort_by">Sort by:</string>
+    <string name="noChartDataString">No Chart Data :(</string>
+    <string name="noMarketsString">No Markets Available :(</string>
+    <string name="notAvailableStringResource" translatable="false">N/A</string>
+    <string name="nameAndSymbol" translatable="false">%1$s (%2$s)</string>
+    <string name="volume24h">Volume24h: </string>
+
+    <string name="basic_currency_format" translatable="false">%1$s %2$s</string>
+
+    <string name="rounded_btc_format_no_space" translatable="false">\u0E3F%1$,.4f</string>
+    <string name="rounded_btc_format" translatable="false">\u0E3F %1$,.4f</string>
+    <string name="usd_format_no_space" translatable="false">&#36;%1$,.2f</string>
+
+    <string name="btc_format" translatable="false">\u0E3F %1$s</string>
+    <string name="eth_format" translatable="false">\u039e %1$s</string>
+    <string name="ltc_format" translatable="false">\u0141 %1$s</string>
+
+    <!--AIC, USDT, NZD, CAD, CLP, COP, HKD, MXN, TTD, XCD, ARS-->
+    <string name="usd_format" translatable="false">&#36; %1$,.2f</string>
+    <!--Australian Dollar-->
+    <string name="aud_format" translatable="false">\u0041\u0024 %1$,.2f</string>
+    <!--brazilian real-->
+    <string name="brl_format" translatable="false">\u0052\u0024 %1$,.2f</string>
+    <!--Bahamian Dollar-->
+    <string name="bsd_format" translatable="false">\u0042\u0024 %1$,.2f</string>
+    <!--swiss franc-->
+    <string name="chf_format" translatable="false">\u0043\u0048\u0046 %1$,.2f</string>
+    <!--Chinese Yuan Renminbi-->
+    <string name="cny_format" translatable="false">\u00a5 %1$,.2f</string>
+    <!--Czech Koruna-->
+    <string name="czk_format" translatable="false">\u004b\u010d %1$,.2f</string>
+    <!--Danish Krone-->
+    <string name="dkk_format" translatable="false">\u006b\u0072 %1$,.2f</string>
+    <!--Euro-->
+    <string name="euro_format" translatable="false">\u20AC %1$,.2f</string>
+    <!--Fiji Dollar-->
+    <string name="fjd_format" translatable="false">\u0046\u004a\u0024 %1$,.2f</string>
+    <!--british pound-->
+    <string name="gbp_format" translatable="false">\u00a3 %1$,.2f</string>
+    <!--Ghanaian New Cedi-->
+    <string name="ghs_format" translatable="false">\u0047\u0048\u20b5 %1$,.2f</string>
+    <!--Guatemalan Quetzal-->
+    <string name="gtq_format" translatable="false">\u0051 %1$,.2f</string>
+    <!--Honduran Lempira-->
+    <string name="hnl_format" translatable="false">\u004c %1$,.2f</string>
+    <!--Croatian Kuna-->
+    <string name="hrk_format" translatable="false">\u006b\u006e %1$,.2f</string>
+    <!--Hungarian Forint-->
+    <string name="huf_format" translatable="false">\u0046\u0074 %1$,.2f</string>
+    <!--Indonesian Rupiah-->
+    <string name="idr_format" translatable="false">\u0052\u0070 %1$,.2f</string>
+    <!--Israeli New Shekel-->
+    <string name="ils_format" translatable="false">\u20aa %1$,.2f</string>
+    <!--Indian Rupee-->
+    <string name="inr_format" translatable="false">\u20b9 %1$,.2f</string>
+    <!--Iceland Krona, NOK, SEK-->
+    <string name="isk_format" translatable="false">\u006b\u0072 %1$,.2f</string>
+    <!--Jamaican Dollar-->
+    <string name="jmd_format" translatable="false">\u004a\u0024 %1$,.2f</string>
+    <!--Japanese Yen-->
+    <string name="jpy_format" translatable="false">\u00A5  %1$,.2f</string>
+    <!--South-Korean Won-->
+    <string name="krw_format" translatable="false">\u20A9  %1$,.2f</string>
+    <!--Sri Lanka Rupee, PKR-->
+    <string name="lkr_format" translatable="false">\u20a8 %1$,.2f</string>
+    <!--Myanmar Kyat-->
+    <string name="mmk_format" translatable="false">\u004b %1$,.2f</string>
+    <!--Malaysian Ringgit-->
+    <string name="myr_format" translatable="false">\u0052\u004d %1$,.2f</string>
+    <!--Panamanian Balboa-->
+    <string name="pab_format" translatable="false">\u0042\u002f\u002e %1$,.2f</string>
+    <!--Peruvian Nuevo Sol-->
+    <string name="pen_format" translatable="false">\u0053\u002f\u002e %1$,.2f</string>
+    <!--Philippine Peso-->
+    <string name="php_format" translatable="false">\u20b1 %1$,.2f</string>
+    <!--Polish Zloty-->
+    <string name="pln_format" translatable="false">\u007a\u0142 %1$,.2f</string>
+    <!--Romanian New Lei-->
+    <string name="ron_format" translatable="false">\u006c\u0065\u0069 %1$,.2f</string>
+    <!--Serbian Dinar-->
+    <string name="rsd_format" translatable="false">\u0052\u0053\u0044 %1$,.2f</string>
+    <!--Russian Rouble-->
+    <string name="rub_format" translatable="false">\u0440\u0443\u0431 %1$,.2f</string>
+    <!--Singapore Dollar-->
+    <string name="sgd_format" translatable="false">\u0053\u0024 %1$,.2f</string>
+    <!--Thai Baht-->
+    <string name="thb_format" translatable="false">\u0e3f %1$,.2f</string>
+    <!--Turkish Lira-->
+    <string name="try_format" translatable="false">\u0054\u004c %1$,.2f</string>
+    <!--Taiwan Dollar-->
+    <string name="twd_format" translatable="false">\u004e\u0054\u0024 %1$,.2f</string>
+    <!--Venezuelan Bolivar Fuerte-->
+    <string name="vef_format" translatable="false">\u0042\u0073 %1$,.2f</string>
+    <!--vietnamese DONG-->
+    <string name="vnd_format" translatable="false">\u20AB %1$,.2f</string>
+    <!--CFA Franc BEAC-->
+    <string name="xaf_format" translatable="false">\u0046\u0043\u0046\u0041 %1$,.2f</string>
+    <!--CFP Franc-->
+    <string name="xpf_format" translatable="false">\u0046 %1$,.2f</string>
+    <!--South African Rand-->
+    <string name="zar_format" translatable="false">\u0052 %1$,.2f</string>
+    <!--Nigerian Naira-->
+    <string name="ngn_format" translatable="false">\u0052 %1$,.2f</string>
+
+    <string name="dev_name">Javad Ahshamian</string>
+    <string name="developer">Developer</string>
+
+    <string name="admob_app_ID" translatable="false">ca-app-pub-5843948052196502~8163812318</string>
+    <string name="admob_Interstitial_ad_unit" translatable="false">ca-app-pub-5843948052196502/4458153986</string>
+
+    <string name="daily_change">Daily change</string>
+
+    <string name="Bitcoin">Bitcoin</string>
+    <string name="Ethereum">Ethereum</string>
+    <string name="Bitcoin_Cash">Bitcoin Cash</string>
+    <string name="Bitcoin_SV">Bitcoin SV</string>
+    <string name="Litecoin">Litecoin</string>
+    <string name="Monero">Monero</string>
+    <string name="Binance_Coin">Binance Coin</string>
+    <string name="Ripple">Ripple</string>
+    <string name="ETC">Ethereum Classic</string>
+
+    <string name="reward_ok">Congratulation! You will not see any full screen ads for the next 24 hours.</string>
+    <string name="reward_not">It is not possible to upgrade the app at this time. Please try again later.</string>
+    <string name="show">Show</string>
+    <string name="show_ad_reward">You can disable all ads for 24 hours by watching a video.</string>
+    <string name="action_upgrade">Upgrade app</string>
+    <string name="reward">Reward</string>
+    <string name="close">Close</string>
+    <string name="error">Error</string>
+    <string name="faq">FAQ</string>
+    <string name="help">Help</string>
+    <string name="about">About…</string>
+    <string name="rate_this">Rate this app</string>
+    <string name="share">Share</string>
+    <string name="privacy_policy">Privacy Policy</string>
+    <string name="contact_us">Contact us</string>
+    <string name="contact_text">Contact text</string>
+    <string name="choose_email_app">Select an app</string>
+    <string name="telegram">Telegram</string>
+    <string name="application">Application</string>
+    <string name="email">Email</string>
+    <string name="cancel">Cancel</string>
+    <string name="update">Update</string>
+    <string name="update_app_des">A new version of this app is available. Please update it.</string>
+
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="Unfavorite">Unfavorite</string>
+    <string name="remove_fav">Do you want to remove %1$s from your favorites list?</string>
+    <string name="yes">Yes</string>
+    <string name="sorting_by">Sorting by: </string>
+    <string name="no_items">No items found!</string>
+    <string name="has_error">An error has occurred!</string>
+    <string name="ZEC">Zcash</string>
+    <string name="dashcoin">Dashcoin</string>
+    <string name="eos">EOSIO</string>
+    <string name="neo">NEO</string>
+    <string name="btg">Bitcoin Gold</string>
+    <string name="rep">Augur</string>
+    <string name="mkr">Maker</string>
+    <string name="rimbit">Rimbit</string>
+    <string name="app_foreground_des">%s continues to work in the background.</string>
+    <string name="sorting_by2">Sorting by: %s</string>
+    <string name="open_source">Open Source</string>
+    <string name="exit_alert">Tap back again to exit.</string>
+    <string name="more_than2">More than</string>
+    <string name="less_than2">Less than</string>
+    <string name="recorded_s">Recorded: %s</string>
+    <string name="Waiting">Waiting…</string>
+    <string name="coin_selection">Coin selection:</string>
+    <string name="enter_price">Enter the desired amount</string>
+    <string name="add">Add</string>
+    <string name="add_alert">Add Alarm</string>
+    <string name="already_exists">This item already exists.</string>
+    <string name="alarm_added">Alarm successfully created.</string>
+    <string name="all_coins">All Coins</string>
+    <string name="favorites">Favorites</string>
+    <string name="alarms">Alarms</string>
+    <string name="alarm_price_format" translatable="false"> &#36; %s  &#36;%s</string>
+    <string name="Once">Once</string>
+    <string name="Always">Always</string>
+    <string name="alarm_notify_title">%s - Alarm</string>
+    <string name="your_desired_price">Your desired price: &#36; %s</string>
+    <string name="alarm_coin">Coin: %s</string>
+    <string name="alarm_price">Current price: %s</string>
+    <string name="alarm_type">Alarm type: %s</string>
+    <string name="alarm_above">More than or equal</string>
+    <string name="alarm_below">Less than or equal</string>
+    <string name="no">No</string>
+    <string name="delete_q">Are you sure you want to delete this item?</string>
+    <string name="remove">Remove</string>
+    <string name="remove_alarm">Remove alarm</string>
+
+    <string name="price_format_alarm">Price: %1$s &#36; %2$.2f</string>
+    <string name="Repeat">Repeat: %s</string>
+    <string name="once">Once</string>
+    <string name="always">Always</string>
+    <string name="alarm_notify_short">%s price: &#36; %s</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <string name="sync_header">Price updates</string>
+    <string name="price_update_frequency">Frequency of price updates</string>
+    <string name="Per_second">Per second</string>
+    <string name="must_above_five">This value should not be less than 5!</string>
+
+    <string name="price">Price</string>
+    <string name="Name_A_Z">Name A-Z</string>
+    <string name="Name_Z_A">Name Z-A</string>
+    <string name="Change_24h">Change 24h</string>
+
+    <string name="pricing_service">Cryptocurrency Price Ticker</string>
+    <string name="active_pricing_service">Permanently active pricing service</string>
+    <string name="price_service_disable_des">If you disable this option, it will not be possible to check alerts after closing the app.</string>
+    <string name="no_internet">You are offline. Please connect to the internet.</string>
+    <string name="retry">Retry</string>
+    <string name="admob_not_load">No ads are currently available. Please try again later.</string>
+    <string name="easy_donating">Easy donating</string>
+    <string name="admob_des">Dear user, please see an Ad to donate this application.</string>
+    <string name="view_admob">View ads</string>
+    <string name="thanks_a_lot">Thanks a lot</string>
+    <string name="name">Name:</string>
+    <string name="last_price">Last Price</string>
+    <string name="Symbol">Symbol</string>
+    <string name="last_highest_bid">Last highest bid</string>
+    <string name="last_bid">Last bid</string>
+    <string name="invalid_price">Price is invalid!</string>
+
+</resources>

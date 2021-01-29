@@ -1,0 +1,16 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.ham3da.cryptofreind.currencylist.CurrencyListTabsActivity">
+
+    <item android:id="@+id/action_search"
+        android:title="@string/action_search"
+        app:actionViewClass="androidx.appcompat.widget.SearchView"
+        app:showAsAction="always"/>
+
+    <item android:id="@+id/sort_button"
+        android:title="@string/action_sort"
+        android:icon="@drawable/ic_import_export_white_24dp"
+        app:showAsAction="always"/>
+
+</menu>

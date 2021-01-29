@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="none">
+
+        <item
+            android:id="@+id/nav_action_news"
+            android:icon="@drawable/ic_baseline_library_books_24"
+            android:title="@string/News" />
+
+        <item
+            android:id="@+id/nav_action_upgrade"
+            android:icon="@drawable/ic_baseline_card_giftcard_24"
+            android:title="@string/easy_donating" />
+
+        <item
+            android:id="@+id/nav_action_settings"
+            android:icon="@drawable/ic_baseline_settings_24"
+            android:title="@string/action_settings" />
+
+        <item
+            android:id="@+id/nav_about"
+            android:icon="@drawable/ic_baseline_error_outline_24"
+            android:title="@string/about" />
+
+        <item
+            android:id="@+id/nav_rating"
+            android:icon="@drawable/ic_baseline_star_rate_24"
+            android:title="@string/rate_this" />
+
+        <item
+            android:id="@+id/nav_policy"
+            android:icon="@drawable/ic_baseline_security_24"
+            android:title="@string/privacy_policy" />
+
+        <item
+            android:id="@+id/nav_contact_us"
+            android:icon="@drawable/ic_baseline_email_24"
+            android:title="@string/contact_us" />
+
+        <item
+            android:id="@+id/nav_share"
+            android:icon="@drawable/ic_share_white_24dp"
+            android:title="@string/share" />
+
+    </group>
+
+
+</menu>

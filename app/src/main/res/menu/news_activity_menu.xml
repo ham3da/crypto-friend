@@ -1,0 +1,11 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.ham3da.cryptofreind.currencylist.CurrencyListTabsActivity">
+
+    <item
+        android:id="@+id/news_refresh_button"
+        android:title="@string/Refresh"
+        android:icon="@drawable/ic_refresh_white_24dp"
+        app:showAsAction="ifRoom" />
+</menu>

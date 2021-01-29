@@ -1,0 +1,26 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="@string/sync_header">
+
+
+        <EditTextPreference
+            android:defaultValue="15"
+            android:key="price_updates_frequency"
+            app:icon="@drawable/ic_baseline_update_24"
+            android:selectAllOnFocus="true"
+            android:singleLine="true"
+            app:summary="@string/Per_second"
+            android:inputType="number"
+            android:title="@string/price_update_frequency" />
+
+        <SwitchPreference
+            android:defaultValue="true"
+            app:icon="@drawable/ic_baseline_refresh_24"
+            android:key="price_updates_service_status"
+            android:title="@string/active_pricing_service"
+            app:summary="@string/price_service_disable_des"/>
+    </PreferenceCategory>
+
+
+</PreferenceScreen>

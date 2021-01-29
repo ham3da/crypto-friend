@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="chart_spinner_options">
+        <item>USD</item>
+        <item>BTC</item>
+    </string-array>
+
+    <string-array name="sort_options">
+        <item>@string/price</item>
+        <item>@string/Name_A_Z</item>
+        <item>@string/Name_Z_A</item>
+        <item>@string/Change_24h</item>
+
+<!--        <item>Market Cap</item>-->
+<!--        <item>Volume 24h</item>-->
+<!--        <item>Change 1h</item>-->
+<!--        <item>Change 7d</item>-->
+<!--        <item>Market Cap LH</item>-->
+<!--        <item>Price LH</item>-->
+<!--        <item>Volume 24h LH</item>-->
+<!--        <item>Change 1h LH</item>-->
+<!--        <item>Change 24h LH</item>-->
+<!--        <item>Change 7d LH</item>-->
+    </string-array>
+
+
+    <!-- Reply Preference -->
+    <string-array name="reply_entries">
+        <item>Reply</item>
+        <item>Reply to all</item>
+    </string-array>
+
+    <string-array name="reply_values">
+        <item>reply</item>
+        <item>reply_all</item>
+    </string-array>
+
+
+</resources>
