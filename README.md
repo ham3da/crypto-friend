@@ -18,7 +18,10 @@ We have used the following open source projects to develop this app:
 
 
 ## Screenshots
-![screenshot 1](screen-01.png)
-![screenshot 2](screen-02.png)
-![screenshot 3](screen-03.png)
-![screenshot 4](screen-04.png)
+<p>
+  <img src="screen-01.png"><br>
+<img src="screen-02.png"><br>
+<img src="screen-03.png"><br>
+<img src="screen-04.png">
+</p>
+
