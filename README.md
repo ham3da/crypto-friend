@@ -6,7 +6,7 @@ Get the latest prices and news about Popular Crypto Currencies
 * Programming language: Java
 
 ##Sources
-* CryptoCompare min-api (news source): In this app, this API  is used to get news related to cryptocurrencies.
+* [CryptoCompare min-api](https://min-api.cryptocompare.com/) (news source): In this app, this API  is used to get news related to cryptocurrencies*.
 * Bitfinex (prices): This API has been used to get the price of cryptocurrencies.
 
 ## APK Link
