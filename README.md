@@ -19,9 +19,9 @@ We have used the following open source projects to develop this app:
 
 ## Screenshots
 <p>
-  <img src="screen-01.png"><br>
-<img src="screen-02.png"><br>
-<img src="screen-03.png"><br>
-<img src="screen-04.png">
+<img width="320" src="screen-01.png"><br>
+<img width="320" src="screen-02.png"><br>
+<img width="320" src="screen-03.png"><br>
+<img width="320" src="screen-04.png">
 </p>
 
