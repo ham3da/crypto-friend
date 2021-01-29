@@ -14,7 +14,7 @@ Get the latest prices and news about Popular Crypto Currencies
 
 ## Open Source projects
 * We have used the following open source projects to develop this app:
-[CryptoBuddy]: https://github.com/Patchett/CryptoBuddy
+[CryptoBuddy](https://github.com/Patchett/CryptoBuddy)
 
 
 ## Screenshots
