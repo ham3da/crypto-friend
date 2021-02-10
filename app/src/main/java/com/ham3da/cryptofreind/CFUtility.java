@@ -34,7 +34,7 @@ public class CFUtility
     /**
      * google play = 0, cafebazaar = 1, myket = 2
      */
-    private final int Store = 0;
+    private final int Store = 2;
     public static int GOOGLE_PLAY_VER = 0;
     public static int CAFEBAZAAR_VER = 1;
     public static int MYKET_VER = 2;
@@ -46,7 +46,6 @@ public class CFUtility
 
     public CFUtility(Context context)
     {
-
         mContext = context;
         preferenceHelper = new PreferenceHelper(mContext);
     }

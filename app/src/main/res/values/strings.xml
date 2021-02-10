@@ -194,6 +194,7 @@
     <string name="sorting_by">Sorting by: </string>
     <string name="no_items">No items found!</string>
     <string name="has_error">An error has occurred!</string>
+    <string name="has_error_server">Server error! Please try again.</string>
     <string name="ZEC">Zcash</string>
     <string name="dashcoin">Dashcoin</string>
     <string name="eos">EOSIO</string>
@@ -267,5 +268,23 @@
     <string name="last_highest_bid">Last highest bid</string>
     <string name="last_bid">Last bid</string>
     <string name="invalid_price">Price is invalid!</string>
+    <string name="invalid_amount">Amount is invalid!</string>
+    <string name="tether">Tether</string>
+    <string name="uniswap">Uniswap</string>
+    <string name="omg_network">OMG Network</string>
+    <string name="stellar">Stellar</string>
+    <string name="polkadot">Polkadot</string>
+    <string name="chainlink">Chainlink</string>
+    <string name="tezos">Tezos</string>
+    <string name="tron">TRON</string>
+    <string name="iota">IOTA</string>
+    <string name="cardano">Cardano</string>
+    <string name="yearn_finance">yearn.finance</string>
+    <string name="LEOcoin">LEOcoin</string>
+    <string name="portfolio">Portfolio</string>
+    <string name="add_purchase">Add purchase</string>
+    <string name="amount">Amount</string>
+    <string name="item_added">Item added successfully.</string>
+    <string name="save">Save</string>
 
 </resources>

@@ -129,7 +129,7 @@ public class AlarmNotify
             String content = String.format(alarm_notify_short, coin.getSymbol(), cmcCoin.getLAST_PRICE().toString());
 
 
-            ArrayList<Alarm> alarmArrayList = dbHelper.getGetAlarms(1, coin.getSymbol());
+            ArrayList<Alarm> alarmArrayList = dbHelper.getAlarms(1, coin.getSymbol());
             for (Alarm alarm : alarmArrayList)
             {
                 StringBuilder big_content = new StringBuilder();

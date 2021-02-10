@@ -138,4 +138,24 @@
     <string name="Symbol">نماد</string>
     <string name="last_highest_bid">بالاترین معامله اخیر</string>
     <string name="last_bid">بالاترین معامله</string>
+    <string name="invalid_price">قیمت نادرست است!</string>
+    <string name="tether">تتر</string>
+    <string name="uniswap">یونی سواپ</string>
+    <string name="omg_network">شبکه اُ‌م‌جی</string>
+    <string name="stellar">استلر</string>
+    <string name="polkadot">پولکادات</string>
+    <string name="chainlink">چین لینک</string>
+    <string name="tezos">تزوس</string>
+    <string name="tron">ترون</string>
+    <string name="iota">آیوتا</string>
+    <string name="cardano">کاردانو</string>
+    <string name="yearn_finance">یرن فایننس</string>
+    <string name="LEOcoin">لئو کوین</string>
+    <string name="portfolio">پرتفوی</string>
+    <string name="add_purchase">افزودن دارایی</string>
+    <string name="amount">مقدار</string>
+    <string name="invalid_amount">مبلغ نامعتبر است!</string>
+    <string name="item_added">با موفقیت افزوده شد.</string>
+    <string name="save">ذخیره</string>
+    <string name="has_error_server">خطای سرور! لطفاً دوباره سعی کنید.</string>
 </resources>

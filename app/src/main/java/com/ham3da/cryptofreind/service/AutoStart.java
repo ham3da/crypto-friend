@@ -23,11 +23,14 @@ public class AutoStart extends BroadcastReceiver
         if(Intent.ACTION_BOOT_COMPLETED.equals(action))
         {
             App app = (App) context.getApplicationContext();
-            if(!app.getTickerServiceRunning())
+            if (appSettings.getServiceUpdate())
             {
-                Intent service = new Intent(context, TickerService.class);
-                service.putExtra("delay", delayTime);
-                ContextCompat.startForegroundService(context, service);
+                if (!app.getTickerServiceRunning())
+                {
+                    Intent service = new Intent(context, TickerService.class);
+                    service.putExtra("delay", delayTime);
+                    ContextCompat.startForegroundService(context, service);
+                }
             }
         }
     }

@@ -31,7 +31,7 @@ public class SectionsPagerAdapterCurrencyList extends FragmentStateAdapter
         fragmentList.add(FragmentAllCurrencyList.newInstance());
         fragmentList.add(FragmentFavoriteCurrencyList.newInstance());
         fragmentList.add(FragmentAlarmList.newInstance());
-
+        fragmentList.add(FragmentPortfolio.newInstance());
     }
 
 
@@ -45,7 +45,7 @@ public class SectionsPagerAdapterCurrencyList extends FragmentStateAdapter
     @Override
     public int getItemCount()
     {
-        return 3;
+        return 4;
     }
 
 

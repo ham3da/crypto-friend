@@ -100,7 +100,7 @@ public class FragmentAlarmList extends Fragment implements SwipeRefreshLayout.On
 
         try
         {
-            alarmArrayList = dbHelper.getGetAlarms();
+            alarmArrayList = dbHelper.getAlarms();
             loadData();
 
         } catch (Exception e)

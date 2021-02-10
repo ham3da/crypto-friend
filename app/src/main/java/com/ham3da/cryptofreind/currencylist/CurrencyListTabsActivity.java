@@ -52,12 +52,14 @@ import com.ham3da.cryptofreind.service.TickerService;
 
 import java.io.InputStream;
 import java.util.Locale;
+import java.util.Objects;
 
 
 public class CurrencyListTabsActivity extends AppCompatActivity implements
         FragmentFavoriteCurrencyList.AllCoinsListUpdater,
         FragmentAllCurrencyList.FavoritesListUpdater,
         FragmentAlarmList.AlarmListFragmentInterface,
+        FragmentPortfolio.PortfolioListFragmentInterface,
         NavigationView.OnNavigationItemSelectedListener
 {
 
@@ -84,11 +86,18 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
     AdRequest adRequest;
 
     @StringRes
-    private static final int[] TAB_TITLES = new int[]{R.string.all_coins, R.string.favorites, R.string.alarms};
+    private static final int[] TAB_TITLES = new int[]{
+            R.string.all_coins,
+            R.string.favorites,
+            R.string.alarms,
+            R.string.portfolio,
+    };
     @DrawableRes
     private static final int[] TAB_ICONS = new int[]{R.drawable.ic_btc_l,
             R.drawable.ic_baseline_bookmark_24,
-            R.drawable.ic_baseline_notifications_24};
+            R.drawable.ic_baseline_notifications_24,
+            R.drawable.ic_baseline_account_balance_wallet_24,
+    };
 
     private final BroadcastReceiver updatePriceReceiver = new BroadcastReceiver()
     {
@@ -105,7 +114,7 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
                 case "com.ham3da.cryptofreind.broadcast.UPDATE_PRICE":
                     updateAllCoinCurrencyList();
                     updateFavCurrencyList();
-
+                    updatePortfolio();
                     break;
                 case "com.ham3da.cryptofreind.broadcast.UPDATE_ALARM":
                     updateAlarmList();
@@ -114,6 +123,7 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
 
                     String error = intent.getStringExtra("error");
                     Toast.makeText(getBaseContext(), error, Toast.LENGTH_SHORT).show();
+                    showServerError(error);
                     stopLoader();
                     break;
 
@@ -195,6 +205,7 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
         updateAllCoinCurrencyList();
         updateFavCurrencyList();
         updateAlarmList();
+        updatePortfolio();
 
     }
 
@@ -299,7 +310,7 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
     {
         mSectionsPagerAdapter = new SectionsPagerAdapterCurrencyList(this, getSupportFragmentManager());
         mViewPager.setAdapter(mSectionsPagerAdapter);
-        mViewPager.setOffscreenPageLimit(3);
+        mViewPager.setOffscreenPageLimit(2);
         mViewPager.registerOnPageChangeCallback(new ViewPager2OnPageChangeCallback());
         new TabLayoutMediator(tabLayout, mViewPager,
                 (tab, position) -> tab.setText(getString(TAB_TITLES[position]))).attach();
@@ -405,10 +416,14 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
 
     private void setupTabIcons()
     {
-        tabLayout.getTabAt(0).setIcon(TAB_ICONS[0]);
-        tabLayout.getTabAt(1).setIcon(TAB_ICONS[1]);
-        tabLayout.getTabAt(2).setIcon(TAB_ICONS[2]);
-        tabLayout.setInlineLabel(true);
+        if (tabLayout != null)
+        {
+            tabLayout.getTabAt(0).setIcon(TAB_ICONS[0]);
+            tabLayout.getTabAt(1).setIcon(TAB_ICONS[1]);
+            tabLayout.getTabAt(2).setIcon(TAB_ICONS[2]);
+            tabLayout.getTabAt(3).setIcon(TAB_ICONS[3]);
+            tabLayout.setInlineLabel(true);
+        }
     }
 
 
@@ -549,12 +564,35 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
     }
 
 
+    protected void showServerError(String msg)
+    {
+        FragmentAllCurrencyList frag = (FragmentAllCurrencyList) mSectionsPagerAdapter.getFragment(0);
+        if (frag != null && frag.getActivity() != null)
+        {
+            frag.showItError(msg);
+        }
+
+        FragmentFavoriteCurrencyList frag_fav = (FragmentFavoriteCurrencyList) mSectionsPagerAdapter.getFragment(1);
+        if (frag_fav != null && frag_fav.getActivity() != null)
+        {
+            frag_fav.showItError(msg);
+        }
+
+        FragmentPortfolio frag_portf = (FragmentPortfolio) mSectionsPagerAdapter.getFragment(3);
+        if (frag_portf != null && frag_portf.getActivity() != null)
+        {
+            frag_portf.showItError(msg);
+        }
+
+    }
+
+
     protected void showConnErrorCoinsAndFavorites()
     {
         FragmentAllCurrencyList frag = (FragmentAllCurrencyList) mSectionsPagerAdapter.getFragment(0);
         if (frag != null && frag.getActivity() != null)
         {
-            frag.showItError();
+            frag.showItError(null);
         }
         else
         {
@@ -564,8 +602,15 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
         FragmentFavoriteCurrencyList frag_fav = (FragmentFavoriteCurrencyList) mSectionsPagerAdapter.getFragment(1);
         if (frag_fav != null && frag_fav.getActivity() != null)
         {
-            frag_fav.showItError();
+            frag_fav.showItError(null);
         }
+
+        FragmentPortfolio frag_portf = (FragmentPortfolio) mSectionsPagerAdapter.getFragment(3);
+        if (frag_fav != null && frag_fav.getActivity() != null)
+        {
+            frag_portf.showItError(null);
+        }
+
     }
 
 
@@ -593,6 +638,11 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
         }
     }
 
+    @Override
+    public void portfolioRefreshAllCoins()
+    {
+        refreshAllCoins();
+    }
 
     @Override
     public void refreshAllCoins()
@@ -600,9 +650,7 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
         FragmentAllCurrencyList frag = (FragmentAllCurrencyList) mSectionsPagerAdapter.getFragment(0);
         if (frag != null && frag.getActivity() != null)
         {
-
             frag.checkConn();
-
         }
         else
         {
@@ -616,9 +664,7 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
         FragmentFavoriteCurrencyList frag = (FragmentFavoriteCurrencyList) mSectionsPagerAdapter.getFragment(1);
         if (frag != null && frag.getActivity() != null)
         {
-
             frag.updateFavCurrencyList();
-
         }
         else
         {
@@ -652,6 +698,19 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
         else
         {
             setPagerAdapter();
+        }
+    }
+
+
+    @Override
+    public void updatePortfolio()
+    {
+        FragmentPortfolio frag = (FragmentPortfolio) mSectionsPagerAdapter.getFragment(3);
+        if (frag != null && frag.getActivity() != null)
+        {
+
+            frag.updatePortfolioList();
+
         }
     }
 
@@ -771,7 +830,7 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
             if (fragment != null)
             {
                 //fragment.onResume();
-                Log.e(TAG, "onPageSelected: 0" );
+                Log.e(TAG, "onPageSelected: 0");
             }
         }
 

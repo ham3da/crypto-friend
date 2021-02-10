@@ -22,6 +22,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
@@ -68,6 +69,7 @@ public class FragmentFavoriteCurrencyList extends Fragment implements SwipeRefre
     Runnable tickerRunnable;
 
     LinearLayout internet_connectivity_error;
+    TextView connect_note;
 
     public interface AllCoinsListUpdater
     {
@@ -122,13 +124,22 @@ public class FragmentFavoriteCurrencyList extends Fragment implements SwipeRefre
     }
 
 
-    public void showItError()
+    public void showItError(String msg)
     {
-        if(internet_connectivity_error != null)
+        if (internet_connectivity_error != null)
         {
             if (internet_connectivity_error.getVisibility() != View.VISIBLE)
             {
                 internet_connectivity_error.setVisibility(View.VISIBLE);
+                if(msg == null)
+                {
+                    connect_note.setText(R.string.no_internet);
+                }
+                else
+                {
+                    connect_note.setText(msg);
+                }
+
                 swipeRefreshLayout.setVisibility(View.GONE);
             }
         }
@@ -224,6 +235,7 @@ public class FragmentFavoriteCurrencyList extends Fragment implements SwipeRefre
         internet_connectivity_error = rootView.findViewById(R.id.internet_connectivity_error);
 
         retryConnBtn = rootView.findViewById(R.id.retryConnBtn);
+        connect_note = rootView.findViewById(R.id.connect_note);
         retryConnBtn.setOnClickListener(v -> {
             checkConn();
         });
@@ -255,9 +267,9 @@ public class FragmentFavoriteCurrencyList extends Fragment implements SwipeRefre
         }
         else
         {
-            showItError();
+            showItError(null);
         }
-        mContext.getSupportActionBar().setTitle(getResources().getString(R.string.app_name));
+        Objects.requireNonNull(mContext.getSupportActionBar()).setTitle(getResources().getString(R.string.app_name));
 
         return rootView;
     }

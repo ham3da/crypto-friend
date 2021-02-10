@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ham3da.cryptofreind.App;
@@ -65,7 +66,7 @@ public class FragmentAllCurrencyList extends Fragment implements SwipeRefreshLay
     App app;
     LinearLayout internet_connectivity_error;
     Button retryConnBtn;
-
+    TextView connect_note;
 
     public interface FavoritesListUpdater
     {
@@ -102,6 +103,9 @@ public class FragmentAllCurrencyList extends Fragment implements SwipeRefreshLay
         currencyRecyclerView = rootView.findViewById(R.id.currency_list_recycler_view);
         internet_connectivity_error = rootView.findViewById(R.id.internet_connectivity_error);
 
+        connect_note = rootView.findViewById(R.id.connect_note);
+
+
         LinearLayoutManager llm = new LinearLayoutManager(requireActivity(), LinearLayoutManager.VERTICAL, false);
         currencyRecyclerView.setLayoutManager(llm);
 
@@ -125,7 +129,7 @@ public class FragmentAllCurrencyList extends Fragment implements SwipeRefreshLay
         }
         else
         {
-            showItError();
+            showItError(null);
         }
 
         return rootView;
@@ -290,14 +294,22 @@ public class FragmentAllCurrencyList extends Fragment implements SwipeRefreshLay
         }
     }
 
-    public void showItError()
+    public void showItError(String msg)
     {
         if (internet_connectivity_error != null)
         {
-
             if (internet_connectivity_error.getVisibility() != View.VISIBLE)
             {
                 internet_connectivity_error.setVisibility(View.VISIBLE);
+                if(msg == null)
+                {
+                    connect_note.setText(R.string.no_internet);
+                }
+                else
+                {
+                    connect_note.setText(msg);
+                }
+
                 swipeRefreshLayout.setVisibility(View.GONE);
             }
         }

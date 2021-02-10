@@ -31,4 +31,6 @@
 
     <color name="r1">#f2f2f2</color>
     <color name="r2">#fff</color>
+
+    <color name="quantity_color">#000</color>
 </resources>

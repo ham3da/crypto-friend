@@ -33,7 +33,9 @@
                 android:id="@+id/currency_list_tabs"
                 style="@style/MyCustomTabLayout"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                app:tabGravity="fill"
+                app:tabMode="scrollable"/>
 
         </com.google.android.material.appbar.AppBarLayout>
 
