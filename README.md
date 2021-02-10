@@ -11,6 +11,7 @@ Get the latest prices and news about Popular Crypto Currencies
 
 ## APK Link
 * [Google Play](https://play.google.com/store/apps/details?id=com.ham3da.cryptofreind)
+* [CafeBazaar](https://cafebazaar.ir/app/com.ham3da.cryptofreind)
 
 ## Open Source projects
 * We have used the following open source projects to develop this app:<br>
