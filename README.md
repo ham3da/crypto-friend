@@ -11,6 +11,7 @@ Get the latest prices and news about Popular Crypto Currencies
 
 ## APK Link
 * [Google Play](https://play.google.com/store/apps/details?id=com.ham3da.cryptofreind)
+* [Cafe Bazaar](https://cafebazaar.ir/app/com.ham3da.cryptofreind)
 
 ## Donate with cryptocurrencies
 * <b>Address:</b> 0xD6735B2457c3c1E25122220Cf3067C614Cf18Bc4 (Available on Ethereum, Binance Smart, Ethereum Classic and Polygon (Matic) networks)
