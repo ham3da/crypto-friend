@@ -12,6 +12,11 @@ Get the latest prices and news about Popular Crypto Currencies
 ## APK Link
 * [Google Play](https://play.google.com/store/apps/details?id=com.ham3da.cryptofreind)
 
+## Donate with cryptocurrencies
+* <b>Address:</b> 0xD6735B2457c3c1E25122220Cf3067C614Cf18Bc4 (Available on Ethereum, Binance Smart, Ethereum Classic and Polygon (Matic) networks)
+* <b>Tron:</b> TTahPYiMfWygFALi2Ew3aQK8jF7rGPTk5b
+* <b>Perfect Money:</b> U21873528
+
 ## Open Source projects
 * We have used the following open source projects to develop this app:<br>
 [CryptoBuddy](https://github.com/Patchett/CryptoBuddy)
