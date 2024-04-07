@@ -50,7 +50,7 @@ public class ReadBitfinexTicker
 
 
         Coins coins = new Coins(mContext);
-        String url = "https://api.ham3da.ir/v2/?my_action=get_prices";
+        String url = "https://api.wpplug.top/v2/?my_action=get_prices";
         stringRequest = new StringRequest(Request.Method.GET, url,
                 response ->
                 {

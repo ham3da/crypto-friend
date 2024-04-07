@@ -6,18 +6,26 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.res.Configuration;
 import android.graphics.Color;
+import android.os.Build;
 import android.os.Bundle;
 
+import com.google.android.gms.ads.AdError;
 import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.InterstitialAd;
-import com.google.android.gms.ads.LoadAdError;
+
+import com.google.android.gms.ads.FullScreenContentCallback;
 import com.google.android.gms.ads.MobileAds;
+import com.google.android.gms.ads.LoadAdError;
+import com.google.android.gms.ads.interstitial.InterstitialAd;
+import com.google.android.gms.ads.interstitial.InterstitialAdLoadCallback;
+
+
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 
 import androidx.annotation.DrawableRes;
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.annotation.StringRes;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AlertDialog;
@@ -60,8 +68,7 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
         FragmentAllCurrencyList.FavoritesListUpdater,
         FragmentAlarmList.AlarmListFragmentInterface,
         FragmentPortfolio.PortfolioListFragmentInterface,
-        NavigationView.OnNavigationItemSelectedListener
-{
+        NavigationView.OnNavigationItemSelectedListener {
 
 
     private SectionsPagerAdapterCurrencyList mSectionsPagerAdapter;
@@ -99,18 +106,14 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
             R.drawable.ic_baseline_account_balance_wallet_24,
     };
 
-    private final BroadcastReceiver updatePriceReceiver = new BroadcastReceiver()
-    {
+    private final BroadcastReceiver updatePriceReceiver = new BroadcastReceiver() {
         @Override
-        public void onReceive(Context context, Intent intent)
-        {
+        public void onReceive(Context context, Intent intent) {
             String action = intent.getAction();
-            if (!is_created)
-            {
+            if (!is_created) {
                 return;
             }
-            switch (action)
-            {
+            switch (action) {
                 case "com.ham3da.cryptofreind.broadcast.UPDATE_PRICE":
                     updateAllCoinCurrencyList();
                     updateFavCurrencyList();
@@ -129,8 +132,7 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
 
                 case "android.net.conn.CONNECTIVITY_CHANGE":
 
-                    if (!CFUtility.isNetworkConnected(getBaseContext()))
-                    {
+                    if (!CFUtility.isNetworkConnected(getBaseContext())) {
                         showConnErrorCoinsAndFavorites();
                     }
 
@@ -141,23 +143,28 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
     };
 
 
-    public void registerBroadcast()
-    {
+    public void registerBroadcast() {
         IntentFilter intentFilters = new IntentFilter();
 
         intentFilters.addAction("com.ham3da.cryptofreind.broadcast.UPDATE_PRICE");
         intentFilters.addAction("com.ham3da.cryptofreind.broadcast.UPDATE_PRICE_FAIL");
         intentFilters.addAction("com.ham3da.cryptofreind.broadcast.UPDATE_ALARM");
         intentFilters.addAction("android.net.conn.CONNECTIVITY_CHANGE");
-        registerReceiver(updatePriceReceiver, intentFilters);
+
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            registerReceiver(updatePriceReceiver, intentFilters, Context.RECEIVER_EXPORTED);
+
+        } else {
+
+            registerReceiver(updatePriceReceiver, intentFilters);
+        }
+
     }
 
     @Override
-    public void applyOverrideConfiguration(Configuration overrideConfiguration)
-    {
+    public void applyOverrideConfiguration(Configuration overrideConfiguration) {
         Log.e(TAG, "applyOverrideConfiguration: ");
-        if (overrideConfiguration != null)
-        {
+        if (overrideConfiguration != null) {
             int uiMode = overrideConfiguration.uiMode;
             overrideConfiguration.setTo(getBaseContext().getResources().getConfiguration());
             overrideConfiguration.uiMode = uiMode;
@@ -166,17 +173,14 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
     }
 
     @Override
-    protected void attachBaseContext(Context newBase)
-    {
+    protected void attachBaseContext(Context newBase) {
         Log.e(TAG, "attachBaseContext: ");
         super.attachBaseContext(newBase);
     }
 
     @Override
-    protected void onPause()
-    {
-        if (broadCastReceiver)
-        {
+    protected void onPause() {
+        if (broadCastReceiver) {
             unregisterReceiver(updatePriceReceiver);
             broadCastReceiver = false;
         }
@@ -185,22 +189,19 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
 
 
     @Override
-    protected void onResume()
-    {
+    protected void onResume() {
         super.onResume();
 
         Log.e(TAG, "onResume: Main");
         registerBroadcast();
         broadCastReceiver = true;
-        if (updateRequired)
-        {
+        if (updateRequired) {
             updateAll();
         }
 
     }
 
-    private void updateAll()
-    {
+    private void updateAll() {
         broadCastReceiver = false;
         updateAllCoinCurrencyList();
         updateFavCurrencyList();
@@ -210,20 +211,17 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
     }
 
     @Override
-    protected void onDestroy()
-    {
+    protected void onDestroy() {
         Log.e(TAG, "onDestroy: Main Ac");
 
-        if (broadCastReceiver)
-        {
+        if (broadCastReceiver) {
             unregisterReceiver(updatePriceReceiver);
             broadCastReceiver = false;
         }
         super.onDestroy();
         appSettings = new AppSettings(getApplicationContext());
 
-        if (!appSettings.getServiceUpdate())
-        {
+        if (!appSettings.getServiceUpdate()) {
             stopService(serviceIntent);
         }
         is_created = false;
@@ -231,8 +229,7 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
 
 
     @Override
-    protected void onCreate(Bundle savedInstanceState)
-    {
+    protected void onCreate(Bundle savedInstanceState) {
 
         Log.e(TAG, "onCreate: 2");
         super.onCreate(savedInstanceState);
@@ -242,8 +239,7 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
 
         FirebaseMessaging.getInstance().getToken()
                 .addOnCompleteListener(task -> {
-                    if (!task.isSuccessful())
-                    {
+                    if (!task.isSuccessful()) {
                         Log.w(TAG, "Fetching FCM registration token failed", task.getException());
                         return;
                     }
@@ -263,11 +259,6 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
 
         MobileAds.initialize(this, initializationStatus -> {
         });
-
-        mInterstitialAd = new InterstitialAd(this);
-        mInterstitialAd.setAdUnitId(getString(R.string.admob_Interstitial_ad_unit));
-        adRequest = new AdRequest.Builder().build();
-        setAdListen();
 
 
         serviceIntent = new Intent(CurrencyListTabsActivity.this, TickerService.class);
@@ -292,8 +283,7 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
         initPager();
 
 
-        if (!app.getTickerServiceRunning())
-        {
+        if (!app.getTickerServiceRunning()) {
             int delayTime = appSettings.getUpdateTime();
             serviceIntent.putExtra("delay", 0);
             ContextCompat.startForegroundService(CurrencyListTabsActivity.this, serviceIntent);
@@ -306,8 +296,7 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
     }
 
 
-    private void initPager()
-    {
+    private void initPager() {
         mSectionsPagerAdapter = new SectionsPagerAdapterCurrencyList(this, getSupportFragmentManager());
         mViewPager.setAdapter(mSectionsPagerAdapter);
         mViewPager.setOffscreenPageLimit(2);
@@ -318,16 +307,65 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
         setupTabIcons();
     }
 
-    private void setPagerAdapter()
-    {
+    private void setPagerAdapter() {
         mSectionsPagerAdapter = new SectionsPagerAdapterCurrencyList(this, getSupportFragmentManager());
         mViewPager.setAdapter(mSectionsPagerAdapter);
     }
 
     boolean requireCloseApp;
 
-    private void askExitAd(boolean closeApp1)
-    {
+    public void displayInterstitial() {
+        if (mInterstitialAd != null) {
+            mInterstitialAd.show(this);
+        } else {
+            AdmobInterstitialInit(true);
+        }
+    }
+
+    private void AdmobInterstitialInit(boolean requestShow) {
+        FullScreenContentCallback fullScreenContentCallback = new FullScreenContentCallback() {
+            @Override
+            public void onAdDismissedFullScreenContent() {
+                mInterstitialAd = null;
+
+            }
+
+
+            @Override
+            public void onAdFailedToShowFullScreenContent(AdError adError) {
+                Log.e(TAG, "onAdFailedToShowFullScreenContent: " + adError.getMessage());
+                super.onAdFailedToShowFullScreenContent(adError);
+
+            }
+        };
+
+        String mAdunitID = getString(R.string.admob_Interstitial_ad_unit);
+
+        InterstitialAd.load(this, mAdunitID, new AdRequest.Builder().build(),
+                new InterstitialAdLoadCallback() {
+
+                    @Override
+                    public void onAdLoaded(@NonNull com.google.android.gms.ads.interstitial.InterstitialAd ad) {
+                        mInterstitialAd = ad;
+                        mInterstitialAd.setFullScreenContentCallback(fullScreenContentCallback);
+                        if (requestShow) {
+
+                            progress_bar_dlg.setVisibility(View.GONE);
+                            mInterstitialAd.show(CurrencyListTabsActivity.this);
+                        }
+                    }
+
+                    @Override
+                    public void onAdFailedToLoad(@NonNull LoadAdError adError) {
+                        progress_bar_dlg.setVisibility(View.GONE);
+                        Log.e(TAG, "onAdFailedToLoad: " + adError.getMessage());
+
+                    }
+                });
+
+    }
+
+    private void askExitAd(boolean closeApp1) {
         requireCloseApp = closeApp1;
         adAsk = true;
         AlertDialog.Builder dialog = new AlertDialog.Builder(this);
@@ -338,14 +376,9 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
         dialog.setMessage(R.string.admob_des);
         dialog.setPositiveButton(R.string.view_admob, (dialog1, id) -> {
             progress_bar_dlg.setVisibility(View.VISIBLE);
-            if (mInterstitialAd.isLoaded())
-            {
-                mInterstitialAd.show();
-            }
-            else
-            {
-                mInterstitialAd.loadAd(adRequest);
-            }
+
+            displayInterstitial();
+
 
         }).setNegativeButton(R.string.close, (dialog12, which) -> finish());
 
@@ -355,69 +388,8 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
 
     ProgressBar progress_bar_dlg;
 
-    public void setAdListen()
-    {
-        mInterstitialAd.setAdListener(new AdListener()
-        {
-
-            @Override
-            public void onAdLoaded()
-            {
-                super.onAdLoaded();
-                progress_bar_dlg.setVisibility(View.GONE);
-                if (mInterstitialAd.isLoaded())
-                {
-                    mInterstitialAd.show();
-                }
-                else
-                {
-                    Toast.makeText(CurrencyListTabsActivity.this, getString(R.string.admob_not_load), Toast.LENGTH_SHORT).show();
-                    if (requireCloseApp)
-                    {
-                        finish();
-                    }
-                }
-
-            }
-
-            @Override
-            public void onAdOpened()
-            {
-                super.onAdOpened();
-            }
-
-            @Override
-            public void onAdClosed()
-            {
-                Toast.makeText(CurrencyListTabsActivity.this, getString(R.string.thanks_a_lot), Toast.LENGTH_SHORT).show();
-                super.onAdClosed();
-                if (requireCloseApp)
-                {
-                    finish();
-                }
-            }
-
-            @Override
-            public void onAdFailedToLoad(LoadAdError loadAdError)
-            {
-                super.onAdFailedToLoad(loadAdError);
-                progress_bar_dlg.setVisibility(View.GONE);
-                Log.e("interstitial", "onAdFailedToLoad: " + loadAdError.getMessage());
-                Toast.makeText(CurrencyListTabsActivity.this, getString(R.string.admob_not_load), Toast.LENGTH_SHORT).show();
-                if (requireCloseApp)
-                {
-                    finish();
-                }
-            }
-
-        });
-    }
-
-
-    private void setupTabIcons()
-    {
-        if (tabLayout != null)
-        {
+    private void setupTabIcons() {
+        if (tabLayout != null) {
             tabLayout.getTabAt(0).setIcon(TAB_ICONS[0]);
             tabLayout.getTabAt(1).setIcon(TAB_ICONS[1]);
             tabLayout.getTabAt(2).setIcon(TAB_ICONS[2]);
@@ -428,13 +400,11 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
 
 
     @Override
-    public boolean onNavigationItemSelected(@NonNull MenuItem item)
-    {
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         CFUtility cfUtility = new CFUtility(this);
         int id = item.getItemId();
 
-        switch (id)
-        {
+        switch (id) {
             case R.id.nav_action_upgrade:
                 askExitAd(false);
                 break;
@@ -476,8 +446,7 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item)
-    {
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         int ItemId = item.getItemId();
         //if (ItemId == R.id.action_upgrade)
         // {
@@ -489,148 +458,114 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
     boolean adAsk = false;
 
     @Override
-    public void onBackPressed()
-    {
+    public void onBackPressed() {
 
-        if (adAsk)
-        {
+        if (adAsk) {
             super.onBackPressed();
-        }
-        else
-        {
+        } else {
             askExitAd(true);
         }
 
     }
 
-    public void removeFavorite(CMCCoin coin)
-    {
+    public void removeFavorite(CMCCoin coin) {
         FragmentFavoriteCurrencyList frag = (FragmentFavoriteCurrencyList) mSectionsPagerAdapter.getFragment(1);
-        if (frag != null && frag.getActivity() != null)
-        {
+        if (frag != null && frag.getActivity() != null) {
             frag.removeFavorite(coin);
         }
     }
 
-    public void addFavorite(CMCCoin coin)
-    {
+    public void addFavorite(CMCCoin coin) {
         FragmentFavoriteCurrencyList frag = (FragmentFavoriteCurrencyList) mSectionsPagerAdapter.getFragment(1);
-        if (frag != null && frag.getActivity() != null)
-        {
+        if (frag != null && frag.getActivity() != null) {
             frag.addFavorite(coin);
         }
     }
 
-    public void allCoinsModifyFavorites(CMCCoin coin)
-    {
+    public void allCoinsModifyFavorites(CMCCoin coin) {
         FragmentAllCurrencyList frag = (FragmentAllCurrencyList) mSectionsPagerAdapter.getFragment(0);
-        if (frag != null && frag.getActivity() != null)
-        {
+        if (frag != null && frag.getActivity() != null) {
             frag.getAdapter().notifyDataSetChanged();
-        }
-        else
-        {
+        } else {
             setPagerAdapter();
         }
     }
 
-    public void performFavsSort()
-    {
+    public void performFavsSort() {
         FragmentFavoriteCurrencyList frag = (FragmentFavoriteCurrencyList) mSectionsPagerAdapter.getFragment(1);
-        if (frag != null && frag.getActivity() != null)
-        {
+        if (frag != null && frag.getActivity() != null) {
             frag.performFavsSort();
         }
     }
 
 
-    protected void stopLoader()
-    {
+    protected void stopLoader() {
         FragmentAllCurrencyList frag = (FragmentAllCurrencyList) mSectionsPagerAdapter.getFragment(0);
-        if (frag != null && frag.getActivity() != null)
-        {
+        if (frag != null && frag.getActivity() != null) {
             frag.stopLoading();
-        }
-        else
-        {
+        } else {
             setPagerAdapter();
         }
 
         FragmentFavoriteCurrencyList frag_fav = (FragmentFavoriteCurrencyList) mSectionsPagerAdapter.getFragment(1);
-        if (frag_fav != null && frag_fav.getActivity() != null)
-        {
+        if (frag_fav != null && frag_fav.getActivity() != null) {
             frag_fav.stopLoading();
         }
     }
 
 
-    protected void showServerError(String msg)
-    {
+    protected void showServerError(String msg) {
         FragmentAllCurrencyList frag = (FragmentAllCurrencyList) mSectionsPagerAdapter.getFragment(0);
-        if (frag != null && frag.getActivity() != null)
-        {
+        if (frag != null && frag.getActivity() != null) {
             frag.showItError(msg);
         }
 
         FragmentFavoriteCurrencyList frag_fav = (FragmentFavoriteCurrencyList) mSectionsPagerAdapter.getFragment(1);
-        if (frag_fav != null && frag_fav.getActivity() != null)
-        {
+        if (frag_fav != null && frag_fav.getActivity() != null) {
             frag_fav.showItError(msg);
         }
 
         FragmentPortfolio frag_portf = (FragmentPortfolio) mSectionsPagerAdapter.getFragment(3);
-        if (frag_portf != null && frag_portf.getActivity() != null)
-        {
+        if (frag_portf != null && frag_portf.getActivity() != null) {
             frag_portf.showItError(msg);
         }
 
     }
 
 
-    protected void showConnErrorCoinsAndFavorites()
-    {
+    protected void showConnErrorCoinsAndFavorites() {
         FragmentAllCurrencyList frag = (FragmentAllCurrencyList) mSectionsPagerAdapter.getFragment(0);
-        if (frag != null && frag.getActivity() != null)
-        {
+        if (frag != null && frag.getActivity() != null) {
             frag.showItError(null);
-        }
-        else
-        {
+        } else {
             setPagerAdapter();
         }
 
         FragmentFavoriteCurrencyList frag_fav = (FragmentFavoriteCurrencyList) mSectionsPagerAdapter.getFragment(1);
-        if (frag_fav != null && frag_fav.getActivity() != null)
-        {
+        if (frag_fav != null && frag_fav.getActivity() != null) {
             frag_fav.showItError(null);
         }
 
         FragmentPortfolio frag_portf = (FragmentPortfolio) mSectionsPagerAdapter.getFragment(3);
-        if (frag_fav != null && frag_fav.getActivity() != null)
-        {
+        if (frag_fav != null && frag_fav.getActivity() != null) {
             frag_portf.showItError(null);
         }
 
     }
 
 
-    protected void refreshCoinsAndFavorites()
-    {
+    protected void refreshCoinsAndFavorites() {
         FragmentAllCurrencyList frag = (FragmentAllCurrencyList) mSectionsPagerAdapter.getFragment(0);
-        if (frag != null && frag.getActivity() != null)
-        {
+        if (frag != null && frag.getActivity() != null) {
 
             frag.hideItError();
             frag.onRefresh();
-        }
-        else
-        {
+        } else {
             setPagerAdapter();
         }
 
         FragmentFavoriteCurrencyList frag_fav = (FragmentFavoriteCurrencyList) mSectionsPagerAdapter.getFragment(1);
-        if (frag_fav != null && frag_fav.getActivity() != null)
-        {
+        if (frag_fav != null && frag_fav.getActivity() != null) {
 
             frag_fav.hideItError();
             frag_fav.onRefresh();
@@ -639,75 +574,56 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void portfolioRefreshAllCoins()
-    {
+    public void portfolioRefreshAllCoins() {
         refreshAllCoins();
     }
 
     @Override
-    public void refreshAllCoins()
-    {
+    public void refreshAllCoins() {
         FragmentAllCurrencyList frag = (FragmentAllCurrencyList) mSectionsPagerAdapter.getFragment(0);
-        if (frag != null && frag.getActivity() != null)
-        {
+        if (frag != null && frag.getActivity() != null) {
             frag.checkConn();
-        }
-        else
-        {
+        } else {
             setPagerAdapter();
         }
     }
 
     @Override
-    public void updateFavCurrencyList()
-    {
+    public void updateFavCurrencyList() {
         FragmentFavoriteCurrencyList frag = (FragmentFavoriteCurrencyList) mSectionsPagerAdapter.getFragment(1);
-        if (frag != null && frag.getActivity() != null)
-        {
+        if (frag != null && frag.getActivity() != null) {
             frag.updateFavCurrencyList();
-        }
-        else
-        {
+        } else {
             setPagerAdapter();
         }
     }
 
-    public void performAllCoinsSort()
-    {
+    public void performAllCoinsSort() {
         FragmentAllCurrencyList frag = (FragmentAllCurrencyList) mSectionsPagerAdapter.getFragment(0);
-        if (frag != null && frag.getActivity() != null)
-        {
+        if (frag != null && frag.getActivity() != null) {
 
             frag.performAllCoinsSort();
 
-        }
-        else
-        {
+        } else {
             setPagerAdapter();
         }
     }
 
     @Override
-    public void updateAllCoinCurrencyList()
-    {
+    public void updateAllCoinCurrencyList() {
         FragmentAllCurrencyList frag = (FragmentAllCurrencyList) mSectionsPagerAdapter.getFragment(0);
-        if (frag != null && frag.getActivity() != null)
-        {
+        if (frag != null && frag.getActivity() != null) {
             frag.updateAllCoinCurrencyList();
-        }
-        else
-        {
+        } else {
             setPagerAdapter();
         }
     }
 
 
     @Override
-    public void updatePortfolio()
-    {
+    public void updatePortfolio() {
         FragmentPortfolio frag = (FragmentPortfolio) mSectionsPagerAdapter.getFragment(3);
-        if (frag != null && frag.getActivity() != null)
-        {
+        if (frag != null && frag.getActivity() != null) {
 
             frag.updatePortfolioList();
 
@@ -715,22 +631,18 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
     }
 
     @Override
-    public void updateAlarmList()
-    {
+    public void updateAlarmList() {
         FragmentAlarmList frag = (FragmentAlarmList) mSectionsPagerAdapter.getFragment(2);
-        if (frag != null && frag.getActivity() != null)
-        {
+        if (frag != null && frag.getActivity() != null) {
 
             frag.updateAlarmList();
 
         }
     }
 
-    public void showAbout()
-    {
+    public void showAbout() {
 
-        try
-        {
+        try {
 
             String title = getString(R.string.about);
             String background_color = "#ffffff";
@@ -763,17 +675,14 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
             intent.putExtra("text", text);
             startActivity(intent);
 
-        } catch (Exception ex)
-        {
+        } catch (Exception ex) {
             Log.e("about", "showAbout: " + ex.getMessage());
         }
 
     }
 
-    public void showPrivacyPolicy()
-    {
-        try
-        {
+    public void showPrivacyPolicy() {
+        try {
 
 
             String title = getString(R.string.privacy_policy);
@@ -806,37 +715,31 @@ public class CurrencyListTabsActivity extends AppCompatActivity implements
             intent.putExtra("text", text);
             startActivity(intent);
 
-        } catch (Exception ex)
-        {
+        } catch (Exception ex) {
             Log.e("about", "showAbout: " + ex.getMessage());
         }
     }
 
-    class ViewPager2OnPageChangeCallback extends ViewPager2.OnPageChangeCallback
-    {
+    class ViewPager2OnPageChangeCallback extends ViewPager2.OnPageChangeCallback {
 
 
         @Override
-        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels)
-        {
+        public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
             super.onPageScrolled(position, positionOffset, positionOffsetPixels);
         }
 
         @Override
-        public void onPageSelected(int position)
-        {
+        public void onPageSelected(int position) {
             super.onPageSelected(position);
             Fragment fragment = mSectionsPagerAdapter.getFragment(position);
-            if (fragment != null)
-            {
+            if (fragment != null) {
                 //fragment.onResume();
                 Log.e(TAG, "onPageSelected: 0");
             }
         }
 
         @Override
-        public void onPageScrollStateChanged(int state)
-        {
+        public void onPageScrollStateChanged(int state) {
             super.onPageScrollStateChanged(state);
         }
     }

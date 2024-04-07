@@ -26,7 +26,7 @@ import java.util.Locale;
 import java.util.concurrent.TimeUnit;
 
 /**
- * Created by javad ahshamian on 2021-01-20
+ * Created by javad ehteshami on 2021-01-20
  */
 
 public class CFUtility
@@ -34,7 +34,7 @@ public class CFUtility
     /**
      * google play = 0, cafebazaar = 1, myket = 2
      */
-    private final int Store = 2;
+    private final int Store = 1;
     public static int GOOGLE_PLAY_VER = 0;
     public static int CAFEBAZAAR_VER = 1;
     public static int MYKET_VER = 2;

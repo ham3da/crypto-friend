@@ -78,7 +78,7 @@ public class AlarmNotify
             Log.e("AlarmNotify3", "showNotify: 1");
             Intent notificationIntent = new Intent(mContext, CurrencyListTabsActivity.class);
             notificationIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-            PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, notificationIntent, PendingIntent.FLAG_ONE_SHOT);
+            PendingIntent pendingIntent = PendingIntent.getActivity(mContext, 0, notificationIntent, PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_IMMUTABLE);
 
             NotificationCompat.Builder mBuilder;
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O)
@@ -141,7 +141,7 @@ public class AlarmNotify
 
                 //Log.e("getAlarm_type", "getAlarm_type: "+alarm.getAlarm_type() );
 
-                if (alarm.getAlarm_type() == DBHelper.ALARM_TYPE_MORE_THAN && cmcCoin.getLAST_PRICE() >= alarm.getPrice())
+                if (alarm.getAlarm_type() == DBHelper.ALARM_TYPE_MORE_THAN && cmcCoin.getLAST_PRICE().doubleValue() >= alarm.getPrice())
                 {
                     //Log.e("AlarmNotify2", "showNotify: _MORE");
                     chanel_id = alarm.getId();
@@ -159,7 +159,7 @@ public class AlarmNotify
                     notified = true;
 
                 }
-                if (alarm.getAlarm_type() == DBHelper.ALARM_TYPE_LESS_THAN && cmcCoin.getLAST_PRICE() <= alarm.getPrice())
+                if (alarm.getAlarm_type() == DBHelper.ALARM_TYPE_LESS_THAN && cmcCoin.getLAST_PRICE().doubleValue() <= alarm.getPrice())
                 {
                     //Log.e("AlarmNotify2", "showNotify: _LESS");
                     chanel_id = alarm.getId();

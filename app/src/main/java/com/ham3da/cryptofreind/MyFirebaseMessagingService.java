@@ -72,12 +72,12 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService
                     .setContentText(messageBody);
 
 
-            if (url.length() > 0)
+            if (!url.isEmpty())
             {
                 Intent notificationIntent = new Intent(Intent.ACTION_VIEW);
                 notificationIntent.setData(Uri.parse(url));
                 notificationIntent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                PendingIntent pending = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_ONE_SHOT
+                PendingIntent pending = PendingIntent.getActivity(getApplicationContext(), 0, notificationIntent, PendingIntent.FLAG_CANCEL_CURRENT | PendingIntent.FLAG_ONE_SHOT | PendingIntent.FLAG_IMMUTABLE
                 );
                 mBuilder.setContentIntent(pending);
             }

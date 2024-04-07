@@ -3,16 +3,22 @@ package com.ham3da.cryptofreind.currencydetails;
 public class Coin
 {
 
-    public Coin(String symbol, String name, int icon)
+    public Coin(String symbol, String name, int icon, String id)
     {
         Symbol = symbol;
         Name = name;
         Icon = icon;
+        ID = id;
     }
 
     private String Symbol;
-    private String Name;
+    private String Name, ID;
     private int Icon;
+
+    public String getID()
+    {
+        return ID;
+    }
 
     public int getIcon()
     {

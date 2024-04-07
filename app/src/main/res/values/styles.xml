@@ -32,13 +32,17 @@
     </style>
 
 
-    <style name="MyAlertDialogTheme" parent="Theme.MaterialComponents.DayNight.Dialog.Alert">
+
+    <style name="MyAlertDialogTheme" parent="Theme.MaterialComponents.Light.Dialog.Alert">
         <item name="colorPrimary">@color/colorPrimary</item>
         <item name="colorAccent">@color/colorAccent</item>
+        <item name="android:textColorPrimary">@color/colorPrimary</item>
         <item name="android:textAppearanceSmall">@style/MyTextAppearance</item>
         <item name="android:textAppearanceMedium">@style/MyTextAppearance</item>
         <item name="android:textAppearanceLarge">@style/MyTextAppearance</item>
+
     </style>
+
 
     <style name="MyTextAppearance" parent="TextAppearance.AppCompat">
         <item name="android:fontFamily">sans-serif</item>

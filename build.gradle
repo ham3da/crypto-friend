@@ -2,14 +2,14 @@
 
 buildscript {
     repositories {
-        jcenter()
-        google()
         mavenCentral()
+        google()
+        jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.1.2'
-        classpath 'com.google.gms:google-services:4.3.4'
-        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.4.1'
+        classpath 'com.android.tools.build:gradle:8.3.1'
+        classpath 'com.google.gms:google-services:4.4.1'
+        classpath 'com.google.firebase:firebase-crashlytics-gradle:2.9.9'
 
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
@@ -18,19 +18,19 @@ buildscript {
 
 allprojects {
     repositories {
-        jcenter()
+        mavenCentral()
         maven { url "https://jitpack.io" }
         google()
-        mavenCentral()
         mavenLocal()
+        jcenter()
     }
 }
 
 
-task clean(type: Delete) {
-    delete rootProject.buildDir
+tasks.register('clean', Delete) {
+    delete rootProject.layout.buildDirectory
 }
 
-tasks.withType(JavaCompile) {
+tasks.withType(JavaCompile).configureEach {
     options.compilerArgs << "-Xlint:unchecked" << "-Xlint:deprecation"
 }

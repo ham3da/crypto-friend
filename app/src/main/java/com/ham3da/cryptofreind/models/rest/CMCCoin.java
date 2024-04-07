@@ -13,8 +13,10 @@ import com.ham3da.cryptofreind.currencydetails.Coins;
 import org.json.JSONArray;
 import org.json.JSONException;
 
+import java.math.BigDecimal;
+
 /**
- * Created by Javad Ahshamian on 2021-01-11
+ * Created by Javad Ehteshami on 2021-01-11
  */
 
 public class CMCCoin
@@ -35,7 +37,7 @@ public class CMCCoin
         ASK_SIZE = jsonArray.getDouble(4);
         DAILY_CHANGE = jsonArray.getDouble(5);
         DAILY_CHANGE_RELATIVE = jsonArray.getDouble(6);
-        LAST_PRICE = jsonArray.getDouble(7);
+        LAST_PRICE = new BigDecimal(jsonArray.getString(7)) ;
         VOLUME = jsonArray.getDouble(8);
         HIGH = jsonArray.getDouble(9);
         LOW = jsonArray.getDouble(10);
@@ -157,9 +159,9 @@ public class CMCCoin
     /**
      * Price of the last trade
      */
-    private Double LAST_PRICE;
+    private BigDecimal LAST_PRICE;
 
-    public Double getLAST_PRICE()
+    public BigDecimal getLAST_PRICE()
     {
         return LAST_PRICE;
     }

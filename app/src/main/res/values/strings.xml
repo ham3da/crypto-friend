@@ -144,7 +144,7 @@
     <!--Nigerian Naira-->
     <string name="ngn_format" translatable="false">\u0052 %1$,.2f</string>
 
-    <string name="dev_name">Javad Ahshamian</string>
+    <string name="dev_name">Javad Ehteshami</string>
     <string name="developer">Developer</string>
 
     <string name="admob_app_ID" translatable="false">ca-app-pub-5843948052196502~8163812318</string>
@@ -161,6 +161,7 @@
     <string name="Binance_Coin">Binance Coin</string>
     <string name="Ripple">Ripple</string>
     <string name="ETC">Ethereum Classic</string>
+    <string name="SOL">Solana</string>
 
     <string name="reward_ok">Congratulation! You will not see any full screen ads for the next 24 hours.</string>
     <string name="reward_not">It is not possible to upgrade the app at this time. Please try again later.</string>
@@ -194,7 +195,7 @@
     <string name="sorting_by">Sorting by: </string>
     <string name="no_items">No items found!</string>
     <string name="has_error">An error has occurred!</string>
-    <string name="has_error_server">Server error! Please try again.</string>
+
     <string name="ZEC">Zcash</string>
     <string name="dashcoin">Dashcoin</string>
     <string name="eos">EOSIO</string>
@@ -202,7 +203,7 @@
     <string name="btg">Bitcoin Gold</string>
     <string name="rep">Augur</string>
     <string name="mkr">Maker</string>
-    <string name="rimbit">Rimbit</string>
+    <string name="rbtc">RSK Smart Bitcoin</string>
     <string name="app_foreground_des">%s continues to work in the background.</string>
     <string name="sorting_by2">Sorting by: %s</string>
     <string name="open_source">Open Source</string>
@@ -281,10 +282,17 @@
     <string name="cardano">Cardano</string>
     <string name="yearn_finance">yearn.finance</string>
     <string name="LEOcoin">LEOcoin</string>
+
     <string name="portfolio">Portfolio</string>
     <string name="add_purchase">Add purchase</string>
     <string name="amount">Amount</string>
     <string name="item_added">Item added successfully.</string>
     <string name="save">Save</string>
+
+    <string name="has_error_server">Server error! Please try again.</string>
+    <string name="SHIB">Shiba</string>
+    <string name="FIL">Filecoin</string>
+    <string name="MATIC">Polygon</string>
+    <string name="FTM">Fantom</string>
 
 </resources>

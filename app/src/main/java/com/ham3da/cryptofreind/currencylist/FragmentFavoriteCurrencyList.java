@@ -1,11 +1,14 @@
 package com.ham3da.cryptofreind.currencylist;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.view.ContextThemeWrapper;
 import androidx.fragment.app.Fragment;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,6 +30,8 @@ import android.widget.Toast;
 
 import com.afollestad.materialdialogs.MaterialDialog;
 
+import com.afollestad.materialdialogs.MaterialDialogKt;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.ham3da.cryptofreind.App;
 import com.ham3da.cryptofreind.CFUtility;
 import com.ham3da.cryptofreind.CustomItemClickListener;
@@ -39,9 +44,11 @@ import com.ham3da.cryptofreind.models.rest.CMCCoin;
 import com.ham3da.cryptofreind.models.rest.CoinFavoritesStructures;
 import com.ham3da.cryptofreind.singletons.DatabaseHelperSingleton;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 
+import java.util.List;
 import java.util.Objects;
 
 import static com.ham3da.cryptofreind.SortUtil.sortList;
@@ -319,23 +326,31 @@ public class FragmentFavoriteCurrencyList extends Fragment implements SwipeRefre
         if (item.getItemId() == R.id.sort_favs_button)
         {
             int sortType = sharedPreferences.getKey(SORT_SETTING, 1);
-            new MaterialDialog.Builder(requireContext())
-                    .title(R.string.sort_by)
-                    .items(R.array.sort_options)
-                    .buttonRippleColor(getContext().getResources().getColor(R.color.colorPrimary))
-                    .itemsCallbackSingleChoice(sortType, (dialog, view, which, text) -> {
-                        sortList(adapter.getCurrencyList(), which, mContext);
-                        adapter.notifyDataSetChanged();
 
-                        sharedPreferences.setKey(SORT_SETTING, which);
-                        allCoinsListUpdater.performAllCoinsSort();
+            AlertDialog.Builder builder = new AlertDialog.Builder(new ContextThemeWrapper( this.mContext,R.style.MyAlertDialogTheme));
 
-                        Toast toast = Toast.makeText(getContext(), String.format(getString(R.string.sorting_by2), text), Toast.LENGTH_SHORT);
-                        toast.show();
-                        return true;
-                    })
-                    .show();
-            return true;
+            builder.setItems(R.array.sort_options, (dialog, which) -> {
+                sortList(adapter.getCurrencyList(), which, mContext);
+                adapter.notifyDataSetChanged();
+                sharedPreferences.setKey(SORT_SETTING, which);
+                allCoinsListUpdater.performAllCoinsSort();
+                List<String> cmd = Arrays.asList(getResources().getStringArray(R.array.sort_options));
+
+                String text = cmd.get(which);
+
+                Toast toast = Toast.makeText(getContext(), String.format(getString(R.string.sorting_by2), text), Toast.LENGTH_SHORT);
+                toast.show();
+            });
+
+            AlertDialog alertDialog = builder.create();
+
+            builder.setCancelable(true);
+            builder.setTitle(mContext.getString(R.string.sort_by));
+
+
+            alertDialog.show();
+
+
         }
         return super.onOptionsItemSelected(item);
     }

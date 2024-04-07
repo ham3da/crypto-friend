@@ -22,7 +22,7 @@ public class Coins
         Coin  res = null;
         for (Coin coin : coinList)
         {
-            if ( symbolId.equals("t" + coin.getSymbol() + "USD") || symbolId.equals("t" + coin.getSymbol() + ":USD"))
+            if ( symbolId.equals(coin.getID()))
             {
                 res = coin;
                 break;
@@ -52,7 +52,7 @@ public class Coins
         boolean  res = false;
         for (Coin coin : coinList)
         {
-            if ( symbolId.equals("t" + coin.getSymbol() + "USD") || symbolId.equals("t" + coin.getSymbol() + ":USD"))
+            if ( symbolId.equals(coin.getID()))
             {
                 res = true;
                 break;
@@ -89,33 +89,41 @@ public class Coins
         List<Coin> coinList = new ArrayList<>();
 
         //V 1
-        coinList.add(new Coin("BTC", mContext.getString(R.string.Bitcoin), R.drawable.ic_btc));
-        coinList.add(new Coin("ETH", mContext.getString(R.string.Ethereum), R.drawable.ic_eth));
-        coinList.add(new Coin("ETC", mContext.getString(R.string.ETC), R.drawable.ic_etc));
-        coinList.add(new Coin("BSV", mContext.getString(R.string.Bitcoin_SV), R.drawable.ic_bsv));
-        coinList.add(new Coin("LTC", mContext.getString(R.string.Litecoin), R.drawable.ic_ltc));
-        coinList.add(new Coin("XMR", mContext.getString(R.string.Monero), R.drawable.ic_xmr));
-        coinList.add(new Coin("ZEC", mContext.getString(R.string.ZEC), R.drawable.ic_zec));
-        coinList.add(new Coin("XRP", mContext.getString(R.string.Ripple), R.drawable.ic_xrp));
-        coinList.add(new Coin("DSH", mContext.getString(R.string.dashcoin), R.drawable.ic_dash));
-        coinList.add(new Coin("EOS", mContext.getString(R.string.eos), R.drawable.ic_eos));
-        coinList.add(new Coin("NEO", mContext.getString(R.string.neo), R.drawable.ic_neo));
-        coinList.add(new Coin("BTG", mContext.getString(R.string.btg), R.drawable.ic_btg));
-        coinList.add(new Coin("REP", mContext.getString(R.string.rep), R.drawable.ic_rep));
-        coinList.add(new Coin("MKR", mContext.getString(R.string.mkr), R.drawable.ic_mkr));
-        coinList.add(new Coin("RBT", mContext.getString(R.string.rimbit), R.drawable.ic_rbt));
+        coinList.add(new Coin("BTC", mContext.getString(R.string.Bitcoin), R.drawable.ic_btc, "tBTCUSD"));
+        coinList.add(new Coin("ETH", mContext.getString(R.string.Ethereum), R.drawable.ic_eth, "tETHUSD"));
+        coinList.add(new Coin("ETC", mContext.getString(R.string.ETC), R.drawable.ic_etc, "tETCUSD"));
+        coinList.add(new Coin("BSV", mContext.getString(R.string.Bitcoin_SV), R.drawable.ic_bsv, "tBSVUSD"));
+        coinList.add(new Coin("LTC", mContext.getString(R.string.Litecoin), R.drawable.ic_ltc, "tLTCUSD"));
+        coinList.add(new Coin("XMR", mContext.getString(R.string.Monero), R.drawable.ic_xmr, "tXMRUSD"));
+        coinList.add(new Coin("ZEC", mContext.getString(R.string.ZEC), R.drawable.ic_zec, "tZECUSD"));
+        coinList.add(new Coin("XRP", mContext.getString(R.string.Ripple), R.drawable.ic_xrp, "tXRPUSD"));
+        coinList.add(new Coin("DSH", mContext.getString(R.string.dashcoin), R.drawable.ic_dash, "tDSHUSD"));
+        coinList.add(new Coin("EOS", mContext.getString(R.string.eos), R.drawable.ic_eos, "tEOSUSD"));
+        coinList.add(new Coin("NEO", mContext.getString(R.string.neo), R.drawable.ic_neo, "tNEOUSD"));
+        coinList.add(new Coin("BTG", mContext.getString(R.string.btg), R.drawable.ic_btg, "tBTGUSD"));
+        coinList.add(new Coin("REP", mContext.getString(R.string.rep), R.drawable.ic_rep, "tREPUSD"));
+        coinList.add(new Coin("MKR", mContext.getString(R.string.mkr), R.drawable.ic_mkr, "tMKRUSD"));
+
+        coinList.add(new Coin("RBTC", mContext.getString(R.string.rbtc), R.drawable.rsk, "tRBTUSD"));
 
         //V 2
-        coinList.add(new Coin("UNI", mContext.getString(R.string.uniswap ), R.drawable.ic_uni));
-        coinList.add(new Coin("OMG", mContext.getString(R.string.omg_network), R.drawable.ic_omg));
-        coinList.add(new Coin("XLM", mContext.getString(R.string.stellar), R.drawable.ic_xlm));
-        coinList.add(new Coin("DOT", mContext.getString(R.string.polkadot), R.drawable.ic_dot));
-        coinList.add(new Coin("LINK", mContext.getString(R.string.chainlink), R.drawable.ic_link));//:
-        coinList.add(new Coin("XTZ", mContext.getString(R.string.tezos), R.drawable.ic_xtz));
-        coinList.add(new Coin("TRX", mContext.getString(R.string.tron), R.drawable.ic_trx));
-        coinList.add(new Coin("ADA", mContext.getString(R.string.cardano), R.drawable.ic_ada));
-        coinList.add(new Coin("YFI", mContext.getString(R.string.yearn_finance), R.drawable.ic_yfi));
-        coinList.add(new Coin("LEO", mContext.getString(R.string.LEOcoin), R.drawable.ic_leo));
+        coinList.add(new Coin("UNI", mContext.getString(R.string.uniswap ), R.drawable.ic_uni, "tUNIUSD"));
+        coinList.add(new Coin("OMG", mContext.getString(R.string.omg_network), R.drawable.ic_omg, "tOMGUSD"));
+        coinList.add(new Coin("XLM", mContext.getString(R.string.stellar), R.drawable.ic_xlm, "tXLMUSD"));
+        coinList.add(new Coin("DOT", mContext.getString(R.string.polkadot), R.drawable.ic_dot, "tDOTUSD"));
+        coinList.add(new Coin("LINK", mContext.getString(R.string.chainlink), R.drawable.ic_link, "tLINK:USD"));//:
+        coinList.add(new Coin("XTZ", mContext.getString(R.string.tezos), R.drawable.ic_xtz, "tXTZUSD"));
+        coinList.add(new Coin("TRX", mContext.getString(R.string.tron), R.drawable.ic_trx, "tTRXUSD"));
+        coinList.add(new Coin("ADA", mContext.getString(R.string.cardano), R.drawable.ic_ada, "tADAUSD"));
+        coinList.add(new Coin("YFI", mContext.getString(R.string.yearn_finance), R.drawable.ic_yfi, "tYFIUSD"));
+        coinList.add(new Coin("LEO", mContext.getString(R.string.LEOcoin), R.drawable.ic_leo, "tLEOUSD"));
+
+        //V 5
+        coinList.add(new Coin("SOL", mContext.getString(R.string.SOL), R.drawable.ic_sol, "tSOLUSD"));
+        coinList.add(new Coin("SHIB", mContext.getString(R.string.SHIB), R.drawable.ic_shib, "tSHIB:USD"));
+        coinList.add(new Coin("MATIC", mContext.getString(R.string.MATIC), R.drawable.ic_matic, "tMATIC:USD"));
+        coinList.add(new Coin("FTM", mContext.getString(R.string.FTM), R.drawable.ic_ftm, "tFTMUSD"));
+
 
 
         this.coinList = coinList;

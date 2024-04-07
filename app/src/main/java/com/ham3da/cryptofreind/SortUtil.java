@@ -18,19 +18,20 @@ public class SortUtil
             // Price
             case 0:
                 Collections.sort(currencyList, (lhs, rhs) -> {
-                    if (lhs.getLAST_PRICE() == 0 && rhs.getLAST_PRICE() == 0)
+                    if (lhs.getLAST_PRICE().doubleValue()  == 0 && rhs.getLAST_PRICE().doubleValue() == 0)
                     {
                         return 0;
                     }
-                    if (lhs.getLAST_PRICE() == 0)
+                    if (lhs.getLAST_PRICE().doubleValue()  == 0)
                     {
                         return 1;
                     }
-                    if (rhs.getLAST_PRICE() == 0)
+                    if (rhs.getLAST_PRICE().doubleValue()  == 0)
                     {
                         return -1;
                     }
-                    double comp = rhs.getLAST_PRICE() - lhs.getLAST_PRICE();
+
+                    double comp = rhs.getLAST_PRICE().doubleValue() - lhs.getLAST_PRICE().doubleValue();
                     return floatComp((float) comp);
                 });
                 break;

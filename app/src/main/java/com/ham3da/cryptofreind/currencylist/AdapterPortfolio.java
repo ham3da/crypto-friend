@@ -25,6 +25,7 @@ import com.ham3da.cryptofreind.currencydetails.Coins;
 import com.ham3da.cryptofreind.models.rest.CMCCoin;
 import com.ham3da.cryptofreind.portfolio.Portfolio;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Locale;
 
@@ -132,17 +133,17 @@ public class AdapterPortfolio extends RecyclerView.Adapter<AdapterPortfolio.View
         Portfolio item = portfolioList.get(position);
         holder.portfolio = item;
 
-        double amount = item.getAmount();
+        BigDecimal amount = new BigDecimal(item.getAmount().toString());
 
 
         Coin coin = this.coins.getCoinByMainSymbol(item.getSymbol());
 
         CMCCoin cmcCoin = getCMCCoin(item.getSymbol());
 
-        Double amount2 = null;
+        BigDecimal amount2 = null;
         if(cmcCoin != null)
         {
-            amount2 = amount * cmcCoin.getLAST_PRICE();
+            amount2 = cmcCoin.getLAST_PRICE().multiply(amount);
         }
 
         holder.CoinSymbol = coin.getSymbol();

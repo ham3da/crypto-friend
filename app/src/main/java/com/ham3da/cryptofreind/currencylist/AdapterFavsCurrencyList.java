@@ -99,7 +99,7 @@ public class AdapterFavsCurrencyList extends RecyclerView.Adapter<AdapterFavsCur
         Coin coin = this.coins.getCoin(item.getSymbol());
         holder.coin_icon.setImageResource(coin.getIcon());
 
-        if (item.getLAST_PRICE() == 0) {
+        if (item.getLAST_PRICE().doubleValue() == 0) {
             holder.coin_last_price.setText("N/A");
         } else {
             holder.coin_last_price.setText(String.format(priceStringResource, item.getLAST_PRICE()));

@@ -10,6 +10,7 @@
     <string name="Binance_Coin">بایننس کوین</string>
     <string name="Ripple">ریپل</string>
     <string name="ETC">اتریوم کلاسیک</string>
+    <string name="SOL">سولانا</string>
     <string name="daily_change">تغییر روزانه</string>
     <string name="developer">توسعه‌دهنده</string>
     <string name="reward_ok">تبریک می‌گوییم، طی 24 ساعت آینده هیچ تبلیغی مشاهده نخواهید کرد.</string>
@@ -44,7 +45,7 @@
     <string name="btg">بیت‌کوین گُلد</string>
     <string name="rep">آگور</string>
     <string name="mkr">میکر</string>
-    <string name="rimbit">ریمبیت</string>
+    <string name="rbtc">آر اس کی بیت‌کوین</string>
     <string name="app_foreground_des">%s در پس زمینه به کار خود ادامه خواهد داد.</string>
     <string name="sorting_by2">مرتب سازی بر اساس: %s</string>
     <string name="open_source">متن باز</string>
@@ -99,7 +100,7 @@
     <string name="action_sort">مرتب‌سازی</string>
     <string name="action_internet">مرورگر</string>
     <string name="action_share">Share</string>
-    <string name="dev_name">جواد احشامیان</string>
+    <string name="dev_name">جواد احتشامی</string>
     <string name="volume_format">ظرفیت 24 ساعته: &#36; %1$,.2f</string>
     <string name="Favorite">گزیده‌ها</string>
     <string name="sort_by">مرتب‌سازی بر اساس:</string>
@@ -158,4 +159,8 @@
     <string name="item_added">با موفقیت افزوده شد.</string>
     <string name="save">ذخیره</string>
     <string name="has_error_server">خطای سرور! لطفاً دوباره سعی کنید.</string>
+    <string name="SHIB">شیبا</string>
+    <string name="FIL">فایل‌کوین</string>
+    <string name="MATIC">پالیگان</string>
+    <string name="FTM">فانتوم</string>
 </resources>
